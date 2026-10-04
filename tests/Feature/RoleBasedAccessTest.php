@@ -58,27 +58,52 @@ class RoleBasedAccessTest extends TestCase
         $this->actingAs($admin)->get('/profile/reviews')->assertForbidden();
     }
 
-    public function test_agreeing_to_review_does_not_grant_the_role_but_is_visible_to_admins(): void
+    public function test_users_can_pick_the_reviewer_role_themselves_and_then_get_the_panel(): void
     {
-        $user = $this->user('volunteer', ['reader']);
+        $this->seed(ContentSeeder::class);
+        $user = $this->user('selfrev', ['reader']);
         $this->actingAs($user);
 
-        $this->put('/profile/roles', ['roles' => ['reader', 'author'], 'reviewer_volunteer' => '1'])->assertSessionHasNoErrors();
+        // The roles page offers Reader / Author / Reviewer.
+        $this->get('/profile/roles')->assertOk()->assertSee('value="reviewer"', false);
+        $this->get('/profile/reviews')->assertForbidden();
 
-        $user->refresh();
-        $this->assertTrue($user->consent_reviewer_contact);
-        $this->assertFalse($user->hasRole('reviewer'));
+        $this->put('/profile/roles', ['roles' => ['reader', 'reviewer']])->assertSessionHasNoErrors();
+
+        $this->assertTrue($user->fresh()->hasRole('reviewer'));
+        $this->get('/profile/identity')->assertSee(route('profile.reviews'), false);
+        $this->get('/profile/reviews')->assertOk();
+
+        // Unticking it takes the panel away again.
+        $this->put('/profile/roles', ['roles' => ['reader']])->assertSessionHasNoErrors();
+        $this->assertFalse($user->fresh()->hasRole('reviewer'));
         $this->get('/profile/reviews')->assertForbidden();
     }
 
-    public function test_staff_roles_survive_when_a_user_edits_their_own_roles(): void
+    public function test_editorial_roles_cannot_be_self_assigned_and_survive_profile_edits(): void
     {
-        $user = $this->user('rev', ['reader', 'reviewer', 'copyeditor']);
+        $user = $this->user('chief', ['reader', 'editor_in_chief', 'copyeditor']);
         $this->actingAs($user);
 
-        $this->put('/profile/roles', ['roles' => ['author']])->assertSessionHasNoErrors();
+        foreach (['editor_in_chief', 'section_editor', 'copyeditor', 'typesetter', 'admin'] as $forbidden) {
+            $this->put('/profile/roles', ['roles' => ['reader', $forbidden]])->assertSessionHasErrors('roles.1');
+        }
 
-        $this->assertEqualsCanonicalizing(['author', 'reviewer', 'copyeditor'], $user->fresh()->roles);
+        $this->put('/profile/roles', ['roles' => ['author', 'reviewer']])->assertSessionHasNoErrors();
+
+        $this->assertEqualsCanonicalizing(['author', 'reviewer', 'editor_in_chief', 'copyeditor'], $user->fresh()->roles);
+    }
+
+    public function test_the_registration_interest_flag_is_untouched_by_the_profile_form(): void
+    {
+        $user = $this->user('volunteer', ['reader']);
+        $user->forceFill(['consent_reviewer_contact' => true])->save();
+        $this->actingAs($user);
+
+        $this->put('/profile/roles', ['roles' => ['reader', 'author'], 'consent_reviewer_contact' => '0'])->assertSessionHasNoErrors();
+
+        $this->assertTrue($user->fresh()->consent_reviewer_contact);
+        $this->assertFalse($user->fresh()->hasRole('reviewer'));
     }
 
     public function test_only_administrators_can_grant_staff_roles_in_the_admin_panel(): void

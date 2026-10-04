@@ -124,4 +124,13 @@ class LocalizationAndAssetsTest extends TestCase
             $this->get("/articles/{$article->id}?style={$style}")->assertOk();
         }
     }
+
+    public function test_css_and_js_urls_carry_a_version_so_browsers_do_not_serve_stale_copies(): void
+    {
+        $html = $this->get('/login')->assertOk()->getContent();
+
+        foreach (['assets/css/style.css', 'assets/css/app.css', 'assets/js/main.js'] as $file) {
+            $this->assertMatchesRegularExpression('#'.preg_quote($file, '#').'\?v=\d+#', $html, "{$file} has no ?v= version");
+        }
+    }
 }

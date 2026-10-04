@@ -540,27 +540,38 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeBtn = modal.querySelector("header [data-role-modal-close]");
   let lastFocus = null;
 
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const TRANSITION_MS = 300;
+  let closeTimer = null;
+
   const open = () => {
+    clearTimeout(closeTimer);
     lastFocus = document.activeElement;
     modal.hidden = false;
     modal.removeAttribute("data-open");
+    // Force a reflow so the transition starts from the hidden state, then fade/rise in.
+    void modal.offsetWidth;
+    modal.classList.add("is-open");
     closeBtn.focus();
   };
 
   const close = () => {
-    modal.hidden = true;
+    modal.classList.remove("is-open");
     if (location.hash === "#journals") history.replaceState(null, "", location.pathname + location.search);
     (lastFocus || openBtn)?.focus?.();
+    // Keep it in the layout until the closing transition is done, then hide it for real.
+    clearTimeout(closeTimer);
+    closeTimer = setTimeout(() => { modal.hidden = true; }, reduceMotion ? 0 : TRANSITION_MS);
   };
 
   openBtn?.addEventListener("click", open);
   modal.querySelectorAll("[data-role-modal-close]").forEach((el) => el.addEventListener("click", close));
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !modal.hidden) close();
+    if (event.key === "Escape" && modal.classList.contains("is-open")) close();
 
     // Keep Tab inside the dialog while it is open.
-    if (event.key === "Tab" && !modal.hidden) {
+    if (event.key === "Tab" && modal.classList.contains("is-open")) {
       const items = [...modal.querySelectorAll("button, input, a[href]")].filter((el) => !el.disabled);
       const first = items[0];
       const last = items[items.length - 1];

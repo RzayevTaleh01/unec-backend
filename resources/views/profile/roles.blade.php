@@ -17,22 +17,6 @@
             @error('roles')<div class="auth-error">{{ $message }}</div>@enderror
             @error('roles.*')<div class="auth-error">{{ $message }}</div>@enderror
 
-            {{-- Staff roles are read-only here: only an administrator can grant them. --}}
-            <div class="role-staff">
-                <strong>{{ __('site.profile_page.staff_roles') }}</strong>
-                @forelse ($user->staffRoles() as $role)
-                    <span class="status-badge status-accepted">{{ __('site.roles.'.$role) }}</span>
-                @empty
-                    <span class="role-staff__none">{{ __('site.profile_page.no_staff_roles') }}</span>
-                @endforelse
-                <p class="profile-hint">{{ __('site.profile_page.staff_roles_note') }}</p>
-            </div>
-
-            <label class="register-consent" for="reviewer-volunteer">
-                <input id="reviewer-volunteer" type="checkbox" name="reviewer_volunteer" value="1" @checked(old('reviewer_volunteer', $user->consent_reviewer_contact))>
-                <span>{{ __('site.profile_page.reviewer_volunteer') }}</span>
-            </label>
-
             <button type="button" class="profile-journal-link" data-role-modal-open aria-haspopup="dialog" aria-controls="journals-modal"><span>+</span><strong>{{ __('site.profile_page.other_journals_link') }}</strong></button>
 
             <label for="profile-specialty">{{ __('site.profile_page.specialty') }}</label>

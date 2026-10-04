@@ -202,5 +202,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('assets/js/wizard.js') }}"></script>
+    <script src="{{ \App\Support\Assets::url('assets/js/wizard.js') }}"></script>
 @endpush

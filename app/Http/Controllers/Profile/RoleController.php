@@ -25,7 +25,6 @@ class RoleController extends Controller
             'roles' => ['required', 'array', 'min:1'],
             'roles.*' => [Rule::in(User::SELF_ROLES)],
             'specialty' => ['nullable', 'string', 'max:255'],
-            'reviewer_volunteer' => ['nullable', 'boolean'],
         ]);
 
         $user = $request->user();
@@ -34,7 +33,6 @@ class RoleController extends Controller
         $user->update([
             'roles' => array_values(array_unique([...$data['roles'], ...$user->staffRoles()])),
             'specialty' => $data['specialty'] ?? null,
-            'consent_reviewer_contact' => $request->boolean('reviewer_volunteer'),
         ]);
 
         return back()->with('status', __('site.profile_page.saved'));

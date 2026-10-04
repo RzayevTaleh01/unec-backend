@@ -51,7 +51,7 @@ class UserResource extends Resource
                 Forms\Components\CheckboxList::make('roles')->label('Rollar')
                     ->options(collect(User::ROLES)->mapWithKeys(fn ($role) => [$role => __('site.roles.'.$role)]))
                     ->columns(2)
-                    ->helperText('Rəyçi, redaktor, kopirayter və mətbəəçi rolları yalnız burada verilir. Baş redaktor və bölmə redaktoru admin panelə (Məqalələr bölməsinə) giriş əldə edir.'),
+                    ->helperText('Oxucu, müəllif və rəyçi rolunu istifadəçi özü də seçə bilər. Baş redaktor, bölmə redaktoru, kopirayter və mətbəəçi rolları yalnız burada verilir. Baş redaktor və bölmə redaktoru admin panelə (Məqalələr bölməsinə) giriş əldə edir.'),
                 Forms\Components\Toggle::make('is_admin')->label('Sistem administratoru')
                     ->helperText('Tam giriş: istifadəçilər, məzmun, ayarlar. Yalnız etibarlı şəxslərə verin.'),
                 Forms\Components\Placeholder::make('reviewer_interest')->label('Rəyçi olmağa razılıq')

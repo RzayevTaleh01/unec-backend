@@ -392,11 +392,6 @@ a.profile-journal-link {
   .wizard-author .profile-field-grid { grid-template-columns: 1.2fr 1fr 1.2fr; }
 }
 
-.role-staff { margin: 19.8px 0; padding: 15.4px; border: 1px dashed #d5dce6; border-radius: 11px; background: #f8fafc; font-size: 13.2px; }
-.role-staff strong { display: block; margin-bottom: 8.8px; }
-.role-staff .status-badge { margin-right: 6.6px; }
-.role-staff__none { color: #5b6472; }
-.role-staff .profile-hint { margin: 11px 0 0; }
 
 /* ---------- Scale 1.1: Bootstrap rem spacing and container widths follow the 110% sizes ---------- */
 html { font-size: 110%; }
@@ -515,7 +510,6 @@ html { font-size: 110%; }
 
 /* Same rhythm for the other profile forms that nest fields in plain divs. */
 .profile-form > .profile-journal-link { margin: 6.6px 0 4.4px; }
-.profile-form > .role-staff { margin: 8.8px 0 4.4px; }
 
 /* Phones: 16px fields stop iOS from zooming in when a field is focused. */
 @media (max-width: 767.98px) {
@@ -628,3 +622,66 @@ body:has(> .register-section) {
 
 /* Real button now (was a link): keep the dashed "add" look. */
 button.profile-journal-link { width: 100%; font-family: Poppins, sans-serif; }
+
+/* ---------- Other-journals modal: close button and soft open/close ---------- */
+.profile-role-dialog header { padding-right: 14px; }
+
+.profile-role-dialog header button {
+  display: grid;
+  flex: 0 0 auto;
+  width: 33px;
+  height: 33px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, .14);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color .15s ease, transform .15s ease;
+}
+
+/* The glyph box was 14x21: make it a centred square so the X sits in the middle of its button. */
+.profile-role-dialog header button i {
+  display: block;
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+  line-height: 22px;
+  text-align: center;
+}
+
+.profile-role-dialog header button:hover { background: rgba(255, 255, 255, .26); }
+.profile-role-dialog header button:active { transform: scale(.94); }
+.profile-role-dialog header button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+/* Soft open/close: the backdrop fades, the dialog rises and settles. JS toggles .is-open and
+   only sets [hidden] once the closing transition has finished. */
+.profile-role-modal {
+  opacity: 0;
+  transition: opacity .22s ease;
+}
+
+.profile-role-modal.is-open { opacity: 1; }
+
+.profile-role-modal .profile-role-dialog {
+  opacity: 0;
+  transform: translateY(16px) scale(.97);
+  transition: opacity .22s ease, transform .3s cubic-bezier(.2, .8, .2, 1);
+}
+
+.profile-role-modal.is-open .profile-role-dialog {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profile-role-modal,
+  .profile-role-modal .profile-role-dialog { transition: none; transform: none; }
+}
+
+/* Profile sidebar brand ("UNEC TƏLƏBƏ / TƏDQİQATLARI JURNALI"): a bit smaller (was 18.7px). */
+.profile-sidebar-brand .profile-brand {
+  font-size: 15.4px;
+  line-height: 1.4;
+}

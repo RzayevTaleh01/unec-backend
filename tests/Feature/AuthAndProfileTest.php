@@ -172,8 +172,8 @@ class AuthAndProfileTest extends TestCase
         $this->put('/profile/roles', ['roles' => ['reader', 'author'], 'specialty' => 'Finance'])->assertSessionHasNoErrors();
         $this->assertSame(['reader', 'author'], $user->fresh()->roles);
 
-        // Nobody can promote themselves: staff roles and made-up roles are rejected.
-        foreach (['admin', 'reviewer', 'editor_in_chief', 'section_editor', 'copyeditor', 'typesetter'] as $forbidden) {
+        // Nobody can promote themselves to an editorial role (or invent one).
+        foreach (['admin', 'editor_in_chief', 'section_editor', 'copyeditor', 'typesetter'] as $forbidden) {
             $this->put('/profile/roles', ['roles' => ['reader', $forbidden]])->assertSessionHasErrors('roles.1');
         }
         $this->assertSame(['reader', 'author'], $user->fresh()->roles);
@@ -181,7 +181,8 @@ class AuthAndProfileTest extends TestCase
 
         $this->put('/profile/roles/journals', ['journals' => [$journal->id => ['reader', 'author']]])->assertSessionHasNoErrors();
         $this->assertSame(['reader', 'author'], json_decode($user->journals()->first()->pivot->roles, true));
-        $this->put('/profile/roles/journals', ['journals' => [$journal->id => ['reviewer']]])->assertSessionHasErrors('journals.'.$journal->id.'.0');
+        $this->put('/profile/roles/journals', ['journals' => [$journal->id => ['reader', 'author', 'reviewer']]])->assertSessionHasNoErrors();
+        $this->put('/profile/roles/journals', ['journals' => [$journal->id => ['copyeditor']]])->assertSessionHasErrors('journals.'.$journal->id.'.0');
 
         $this->put('/profile/roles/journals', ['journals' => []]);
         $this->assertCount(0, $user->journals()->get());
@@ -287,7 +288,9 @@ class AuthAndProfileTest extends TestCase
         $this->assertStringContainsString('action="'.route('profile.roles.journals.update').'"', $html);
         $this->assertStringContainsString($journal->name, html_entity_decode($html));
         $this->assertStringContainsString('name="journals['.$journal->id.'][]" value="reader"', $html);
-        $this->assertStringNotContainsString('value="reviewer"', $html);
+        // Reader, Author and Reviewer are self-service per journal; editorial roles are not offered.
+        $this->assertStringContainsString('name="journals['.$journal->id.'][]" value="reviewer"', $html);
+        $this->assertStringNotContainsString('value="copyeditor"', $html);
         $this->assertStringNotContainsString(' data-open', $html);
         $this->assertStringContainsString('hidden', $html);
 
@@ -295,7 +298,7 @@ class AuthAndProfileTest extends TestCase
         $this->get('/profile/roles/journals')->assertRedirect('/profile/roles#journals');
 
         // Invalid input re-renders the page with the dialog open.
-        $this->from('/profile/roles')->put('/profile/roles/journals', ['journals' => [$journal->id => ['reviewer']]])
+        $this->from('/profile/roles')->put('/profile/roles/journals', ['journals' => [$journal->id => ['typesetter']]])
             ->assertRedirect('/profile/roles');
         $this->get('/profile/roles')->assertSee('data-open', false);
     }

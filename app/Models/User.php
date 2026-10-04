@@ -18,11 +18,11 @@ class User extends Authenticatable implements FilamentUser
     /** @use HasFactory<UserFactory> */
     use HasApiTokens, HasFactory, Notifiable, ResolvesMediaUrl;
 
-    /** Roles a user may switch on or off for themselves. */
-    public const SELF_ROLES = ['reader', 'author'];
+    /** Roles a user may switch on or off for themselves (like OJS self-registration: reader, author, reviewer). */
+    public const SELF_ROLES = ['reader', 'author', 'reviewer'];
 
-    /** Roles only an administrator can grant (the technical specification's RBAC roles). */
-    public const STAFF_ROLES = ['editor_in_chief', 'section_editor', 'reviewer', 'copyeditor', 'typesetter'];
+    /** Editorial roles only an administrator can grant. A reviewer still has to be assigned to each article by an editor. */
+    public const STAFF_ROLES = ['editor_in_chief', 'section_editor', 'copyeditor', 'typesetter'];
 
     public const ROLES = ['reader', 'author', 'editor_in_chief', 'section_editor', 'reviewer', 'copyeditor', 'typesetter'];
 
