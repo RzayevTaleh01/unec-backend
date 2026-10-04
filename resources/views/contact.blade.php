@@ -7,8 +7,9 @@
         <div class="container contact-container">
             <h1 class="contact-heading">{{ __('site.nav.contact') }}</h1>
 
-            <div class="contact-map" aria-label="{{ __('site.contact.map') }}">
-                <div class="map-marker"><i class="bi bi-geo-alt-fill"></i></div>
+            @php($mapUrl = \App\Models\Setting::get('map_embed_url') ?: config('site.default_map_url'))
+            <div class="contact-map contact-map--embed" aria-label="{{ __('site.contact.map') }}">
+                <iframe class="contact-map-frame" src="{{ $mapUrl }}" title="{{ __('site.contact.map') }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
 
                 <div class="contact-cards">
                     @foreach ($contacts as $contact)

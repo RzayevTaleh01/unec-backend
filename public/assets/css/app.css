@@ -775,3 +775,14 @@ button.profile-journal-link { width: 100%; font-family: Poppins, sans-serif; }
 @media (max-width: 575.98px) {
   .page-head .profile-save, .page-head .btn-compact { width: auto; }
 }
+
+/* Contact page: live embedded map behind the contact cards */
+.contact-map--embed { background-image: none; background-color: #e8eef5; }
+.contact-map--embed .contact-map-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.contact-map--embed .contact-cards { pointer-events: none; }
+.contact-map--embed .contact-card { pointer-events: auto; }
+@media (max-width: 767.98px) {
+  .contact-map--embed { display: flex; flex-direction: column; }
+  .contact-map--embed .contact-map-frame { position: static; order: 2; height: 280px; border-radius: 0 0 19.8px 19.8px; }
+  .contact-map--embed .contact-cards { order: 1; }
+}

@@ -42,6 +42,17 @@ class AdminPanelTest extends TestCase
         $this->get('/admin')->assertOk()->assertSee('Sayta qay', false)->assertSee(route('home'), false);
     }
 
+    public function test_contact_map_is_an_editable_iframe(): void
+    {
+        $this->get('/contact')->assertSee('<iframe class="contact-map-frame"', false)->assertSee('openstreetmap.org', false);
+
+        $snippet = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!2sX" width="600"></iframe>';
+        Livewire::test(SiteSettings::class)->set('data.map_embed_url', $snippet)->call('save')->assertHasNoErrors();
+        $this->get('/contact')->assertSee('https://www.google.com/maps/embed?pb=!1m18!2sX', false);
+
+        Livewire::test(SiteSettings::class)->set('data.map_embed_url', 'https://evil.example/x')->call('save')->assertHasErrors('data.map_embed_url');
+    }
+
     public function test_every_admin_screen_renders(): void
     {
         $paths = [

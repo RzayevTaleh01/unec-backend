@@ -44,6 +44,7 @@ class SiteSettings extends Page implements Forms\Contracts\HasForms
             'footer_quote' => Setting::find('footer_quote')?->getTranslations('value') ?? [],
             'footer_quote_author' => Setting::find('footer_quote_author')?->getTranslations('value') ?? [],
             'systems_url' => Setting::get('systems_url'),
+            'map_embed_url' => Setting::get('map_embed_url'),
         ]);
     }
 
@@ -69,6 +70,17 @@ class SiteSettings extends Page implements Forms\Contracts\HasForms
                         ->url()
                         ->helperText('Boş buraxılsa, menyu daxili səhifəyə yönləndirir.'),
                 ]),
+                Forms\Components\Section::make('Əlaqə səhifəsi: xəritə')->schema([
+                    Forms\Components\Textarea::make('map_embed_url')
+                        ->label('Xəritə linki və ya iframe kodu')
+                        ->rows(3)
+                        ->helperText('Google Maps → Paylaş → Xəritəni yerləşdir bölməsindəki iframe kodunu (və ya OpenStreetMap/Yandex embed linkini) yapışdırın. Boş buraxılsa, standart UNEC xəritəsi göstərilir.')
+                        ->rules([fn () => function (string $attribute, $value, \Closure $fail) {
+                            if (filled($value) && ! self::extractMapUrl($value)) {
+                                $fail('Yalnız Google Maps, OpenStreetMap və ya Yandex xəritə linki qəbul olunur (https://...).');
+                            }
+                        }]),
+                ]),
             ]);
     }
 
@@ -83,8 +95,27 @@ class SiteSettings extends Page implements Forms\Contracts\HasForms
             $setting->save();
         }
 
+        Setting::updateOrCreate(['key' => 'map_embed_url'], ['value' => array_filter(['az' => self::extractMapUrl($data['map_embed_url'] ?? '')])]);
+
         Setting::updateOrCreate(['key' => 'systems_url'], ['value' => array_filter(['az' => $data['systems_url'] ?? null])]);
 
         Notification::make()->title('Ayarlar yadda saxlanıldı')->success()->send();
+    }
+
+    /** Accepts a bare URL or a pasted <iframe> snippet; only known map providers over https are allowed. */
+    public static function extractMapUrl(?string $input): ?string
+    {
+        $input = trim((string) $input);
+        if ($input === '') {
+            return null;
+        }
+        if (preg_match('/src\s*=\s*(["\'])(.+?)\1/i', $input, $m)) {
+            $input = html_entity_decode($m[2]);
+        }
+        $parts = parse_url($input);
+        $host = strtolower($parts['host'] ?? '');
+        $allowed = ['google.com', 'www.google.com', 'maps.google.com', 'openstreetmap.org', 'www.openstreetmap.org', 'yandex.com', 'yandex.az', 'yandex.ru'];
+
+        return ($parts['scheme'] ?? '') === 'https' && in_array($host, $allowed, true) ? $input : null;
     }
 }
