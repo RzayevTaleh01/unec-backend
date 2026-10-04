@@ -527,3 +527,52 @@ document.addEventListener("DOMContentLoaded", () => {
     if (event.persisted) clearLoading();
   });
 });
+
+// =========================
+// OTHER-JOURNALS MODAL (profile > roles)
+// Opens from the button, from the #journals hash (old link) or when the server re-renders it with errors.
+// =========================
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.querySelector("[data-role-modal]");
+  if (!modal) return;
+
+  const openBtn = document.querySelector("[data-role-modal-open]");
+  const closeBtn = modal.querySelector("header [data-role-modal-close]");
+  let lastFocus = null;
+
+  const open = () => {
+    lastFocus = document.activeElement;
+    modal.hidden = false;
+    modal.removeAttribute("data-open");
+    closeBtn.focus();
+  };
+
+  const close = () => {
+    modal.hidden = true;
+    if (location.hash === "#journals") history.replaceState(null, "", location.pathname + location.search);
+    (lastFocus || openBtn)?.focus?.();
+  };
+
+  openBtn?.addEventListener("click", open);
+  modal.querySelectorAll("[data-role-modal-close]").forEach((el) => el.addEventListener("click", close));
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !modal.hidden) close();
+
+    // Keep Tab inside the dialog while it is open.
+    if (event.key === "Tab" && !modal.hidden) {
+      const items = [...modal.querySelectorAll("button, input, a[href]")].filter((el) => !el.disabled);
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  if (location.hash === "#journals" || modal.hasAttribute("data-open")) open();
+});

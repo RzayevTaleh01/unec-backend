@@ -43,7 +43,7 @@ class LocalizationAndAssetsTest extends TestCase
 
         $guestUrls = ['/', '/archive', '/archive/1', '/articles/1', '/announcements', '/search', '/search?title=zzz', '/editorial-board', '/contact',
             '/about/purpose', '/submission/ethics', '/information/readers', '/privacy', '/login', '/register/personal', '/register/success', '/forgot-password', '/forgot-password/sent'];
-        $authorUrls = ['/profile/identity', '/profile/contact', '/profile/roles', '/profile/roles/journals', '/profile/public', '/profile/password',
+        $authorUrls = ['/profile/identity', '/profile/contact', '/profile/roles', '/profile/public', '/profile/password',
             '/profile/notifications', '/profile/api-key', '/profile/submissions', "/profile/submissions/{$article->id}", '/profile/inbox', '/submit',
             "/submit/{$draft->id}"];
         $reviewerUrls = ['/profile/reviews', "/profile/reviews/{$review->id}"];

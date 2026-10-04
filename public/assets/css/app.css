@@ -612,3 +612,19 @@ body:has(> .register-section) {
 @media (max-width: 399.98px) {
   .site-header .title { font-size: 13.2px; }
 }
+
+/* ---------- Other-journals modal: save bar under the scrolling list ---------- */
+.profile-role-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 11px;
+  padding: 15.4px 22px;
+  border-top: 1px solid #e8ebef;
+  background: #fafbfc;
+}
+
+.profile-role-footer .register-secondary,
+.profile-role-footer .profile-save { height: 44px; min-height: 44px; padding: 0 22px; margin: 0; }
+
+/* Real button now (was a link): keep the dashed "add" look. */
+button.profile-journal-link { width: 100%; font-family: Poppins, sans-serif; }

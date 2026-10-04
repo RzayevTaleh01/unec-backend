@@ -121,7 +121,7 @@ class AuthAndProfileTest extends TestCase
 
     public function test_every_profile_tab_is_a_separate_page_and_requires_login(): void
     {
-        $paths = ['identity', 'contact', 'roles', 'roles/journals', 'public', 'password', 'notifications', 'api-key', 'submissions'];
+        $paths = ['identity', 'contact', 'roles', 'public', 'password', 'notifications', 'api-key', 'submissions'];
 
         foreach ($paths as $path) {
             $this->get("/profile/{$path}")->assertRedirect('/login');
@@ -269,5 +269,34 @@ class AuthAndProfileTest extends TestCase
         $admin->save();
 
         $this->actingAs($admin)->get('/admin')->assertOk();
+    }
+
+    public function test_other_journals_open_as_a_modal_on_the_roles_page(): void
+    {
+        $this->seed(ContentSeeder::class);
+        $user = $this->user();
+        $this->actingAs($user);
+        $journal = Journal::where('is_primary', false)->first();
+
+        $html = $this->get('/profile/roles')->assertOk()->getContent();
+
+        // A dialog with its own form, listing every non-primary journal with the self-service roles only.
+        $this->assertStringContainsString('data-role-modal', $html);
+        $this->assertStringContainsString('role="dialog"', $html);
+        $this->assertStringContainsString('data-role-modal-open', $html);
+        $this->assertStringContainsString('action="'.route('profile.roles.journals.update').'"', $html);
+        $this->assertStringContainsString($journal->name, html_entity_decode($html));
+        $this->assertStringContainsString('name="journals['.$journal->id.'][]" value="reader"', $html);
+        $this->assertStringNotContainsString('value="reviewer"', $html);
+        $this->assertStringNotContainsString(' data-open', $html);
+        $this->assertStringContainsString('hidden', $html);
+
+        // The former standalone page now lands on the roles page and opens the dialog.
+        $this->get('/profile/roles/journals')->assertRedirect('/profile/roles#journals');
+
+        // Invalid input re-renders the page with the dialog open.
+        $this->from('/profile/roles')->put('/profile/roles/journals', ['journals' => [$journal->id => ['reviewer']]])
+            ->assertRedirect('/profile/roles');
+        $this->get('/profile/roles')->assertSee('data-open', false);
     }
 }
