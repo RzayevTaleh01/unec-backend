@@ -44,7 +44,7 @@ class AdminPanelTest extends TestCase
 
     public function test_contact_map_is_an_editable_iframe(): void
     {
-        $this->get('/contact')->assertSee('<iframe class="contact-map-frame"', false)->assertSee('openstreetmap.org', false);
+        $this->get('/contact')->assertSee('<iframe class="contact-map-frame"', false)->assertSee('google.com/maps', false);
 
         $snippet = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!2sX" width="600"></iframe>';
         Livewire::test(SiteSettings::class)->set('data.map_embed_url', $snippet)->call('save')->assertHasNoErrors();
