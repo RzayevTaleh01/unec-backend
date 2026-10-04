@@ -1,0 +1,614 @@
+/* Backend additions on top of the original static design (style.css). */
+
+/* Form feedback */
+.auth-error {
+  margin-top: -4px;
+  color: #d93025;
+  font-size: 12.1px;
+  line-height: 1.4;
+}
+
+.auth-alert {
+  margin: 0 0 15.4px;
+  padding: 11px 15.4px;
+  border-radius: 8.8px;
+  font-size: 13.2px;
+}
+
+.auth-alert--success {
+  background: #e7f6ec;
+  color: #1e7a3c;
+}
+
+/* Former buttons that are now real links */
+a.auth-submit,
+a.register-secondary {
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+}
+
+a.more-btn,
+a.search-more-btn,
+a.view-more {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.journal-tab {
+  display: inline-block;
+  text-decoration: none;
+}
+
+a.profile-journal-link {
+  text-decoration: none;
+}
+
+.profile-tabs a {
+  display: inline-flex;
+  flex: 0 0 auto;
+  min-height: 38.5px;
+  align-items: center;
+  padding: 0 13.2px;
+  border-radius: 5.5px;
+  background: transparent;
+  color: #20242d;
+  font: 500 12.1px Poppins, sans-serif;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.profile-tabs a.active {
+  background: #253754;
+  color: #fff;
+}
+
+.profile-header-actions a {
+  display: grid;
+  width: 24.2px;
+  height: 33px;
+  place-items: center;
+  color: #20242d;
+  font-size: 18.7px;
+}
+
+.profile-sidebar form {
+  display: flex;
+  margin-top: auto;
+}
+
+.profile-sidebar form .profile-logout {
+  width: 100%;
+  margin-top: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.footer-bottom a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-bottom a:hover {
+  text-decoration: underline;
+}
+
+.profile-journal-link,
+.profile-journal-link:hover {
+  color: #1769e0;
+}
+
+.content-nav a[aria-current="page"] {
+  pointer-events: none;
+}
+
+/* Submission wizard, statuses, reviews */
+.auth-alert--error { background: #fdecea; color: #b3261e; }
+
+.wizard-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6.6px;
+  margin: 0 0 24.2px;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+
+.wizard-steps li { flex: 1 1 154px; }
+
+.wizard-steps a,
+.wizard-step-static {
+  display: flex;
+  align-items: center;
+  gap: 8.8px;
+  padding: 8.8px 11px;
+  border-radius: 6.6px;
+  background: #f1f3f6;
+  color: #5b6472;
+  font: 500 12.1px Poppins, sans-serif;
+  text-decoration: none;
+}
+
+.wizard-steps li > * > span:first-child {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  border-radius: 50%;
+  background: #d9dde4;
+  color: #20242d;
+  font-size: 12.1px;
+}
+
+.wizard-steps .is-current > * { background: #253754; color: #fff; }
+.wizard-steps .is-current > * > span:first-child { background: #fff; color: #253754; }
+.wizard-steps .is-done > * > span:first-child { background: #2d6da8; color: #fff; }
+
+.wizard-actions {
+  display: flex;
+  align-items: center;
+  gap: 13.2px;
+  margin-top: 19.8px;
+}
+
+.wizard-actions .register-secondary,
+.wizard-actions .profile-save { min-width: 132px; padding: 0 19.8px; }
+
+.wizard-author {
+  margin: 0 0 15.4px;
+  padding: 15.4px;
+  border: 1px solid #e6e9ee;
+  border-radius: 8.8px;
+}
+
+.wizard-primary { display: flex; align-items: center; gap: 8.8px; margin-top: 11px; font-size: 12.1px; }
+
+.wizard-summary { margin: 15.4px 0; font-size: 13.2px; }
+.wizard-summary dt { margin-top: 11px; color: #5b6472; font-weight: 600; }
+.wizard-summary dd { margin: 2.2px 0 0; white-space: pre-line; }
+
+.wizard-delete { margin-top: 26.4px; }
+
+.submissions-head { display: flex; align-items: center; justify-content: space-between; gap: 13.2px; flex-wrap: wrap; }
+.submissions-head .profile-save { text-decoration: none; display: inline-grid; place-items: center; padding: 0 17.6px; }
+
+.profile-panel textarea {
+  width: 100%;
+  padding: 11px 13.2px;
+  border: 1px solid #e1e5eb;
+  border-radius: 5.5px;
+  font: 13.2px Poppins, sans-serif;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 2.2px 8.8px;
+  border-radius: 11px;
+  background: #eef0f4;
+  color: #394150;
+  font-size: 12.1px;
+  font-weight: 600;
+}
+
+.status-published, .status-completed, .status-accepted { background: #e7f6ec; color: #1e7a3c; }
+.status-rejected, .status-declined { background: #fdecea; color: #b3261e; }
+.status-revisions, .status-pending, .status-in_review { background: #fff4de; color: #8a5a00; }
+
+.profile-notification-group.is-unread { border-left: 3.3px solid #2d6da8; padding-left: 11px; }
+
+.profile-bell { position: relative; }
+.profile-bell-count {
+  position: absolute;
+  top: -4px;
+  right: -8px;
+  min-width: 16.5px;
+  padding: 0 4.4px;
+  border-radius: 8.8px;
+  background: #d93025;
+  color: #fff;
+  font-size: 12.1px;
+  line-height: 16.5px;
+  text-align: center;
+}
+
+/* Wizard steps stay on one row on phones: only the current step shows its label. */
+@media (max-width: 575.98px) {
+  .wizard-steps { flex-wrap: nowrap; gap: 4.4px; }
+  .wizard-steps li { flex: 0 0 auto; }
+  .wizard-steps li:not(.is-current) > * { padding: 8.8px; font-size: 0; gap: 0; }
+  .wizard-steps li:not(.is-current) > * > span:first-child { font-size: 12.1px; }
+  .wizard-steps .is-current { flex: 1 1 auto; }
+}
+
+.profile-panel > p:not(.profile-hint):not(.profile-privacy):not(.profile-notification-intro):not(.profile-password-intro) { font-size: 13.2px; line-height: 1.5; }
+
+/* Pages without a breadcrumb need breathing room under the header. */
+.search-main,
+.announcement-section,
+.contact-section {
+  padding-top: 44px;
+}
+
+.search-main { padding-bottom: 44px; }
+
+@media (max-width: 767.98px) {
+  .search-main,
+  .announcement-section,
+  .contact-section { padding-top: 26.4px; }
+}
+
+/* ---------- File input with drop zone and preview ---------- */
+.file-drop { margin-bottom: 24.2px; }
+
+/* Visually hidden but still focusable/submittable (the zone below is its label). */
+.file-drop__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  opacity: 0;
+}
+
+.file-drop__zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4.4px;
+  padding: 28.6px 17.6px;
+  border: 2.2px dashed #c9d3e0;
+  border-radius: 13.2px;
+  background: #f8fafc;
+  color: #394150;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+
+.file-drop__zone i { color: #2d6da8; font-size: 33px; line-height: 1; }
+.file-drop__title { font: 500 14.3px Poppins, sans-serif; }
+.file-drop__title u { color: #2d6da8; }
+.file-drop__hint { color: #5b6472; font-size: 12.1px; }
+
+.file-drop__zone:hover,
+.file-drop.is-dragover .file-drop__zone { border-color: #2d6da8; background: #eef5fc; }
+.file-drop__input:focus-visible + .file-drop__zone { outline: 3.3px solid rgba(45, 109, 168, .4); outline-offset: 2.2px; }
+
+.file-drop.has-file .file-drop__zone { display: none; }
+.file-drop.has-error .file-drop__zone { border-color: #d93025; background: #fdf4f3; }
+
+.file-drop__selected {
+  display: flex;
+  align-items: center;
+  gap: 15.4px;
+  padding: 13.2px;
+  border: 1px solid #dfe5ee;
+  border-radius: 13.2px;
+  background: #fff;
+}
+
+.file-drop__selected[hidden] { display: none; }
+
+.file-drop__thumb {
+  display: grid;
+  flex: 0 0 70.4px;
+  width: 70.4px;
+  height: 70.4px;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 11px;
+  background: #eef2f7;
+  color: #2d6da8;
+  font: 700 12.1px Poppins, sans-serif;
+  text-transform: uppercase;
+}
+
+.file-drop__thumb img { width: 100%; height: 100%; object-fit: cover; }
+.file-drop__thumb i { font-size: 28.6px; line-height: 1; }
+.file-drop__thumb small { display: block; margin-top: 2.2px; font-size: 12.1px; }
+
+.file-drop__meta { display: flex; flex: 1 1 auto; flex-direction: column; min-width: 0; font-size: 13.2px; }
+.file-drop__meta strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+.file-drop__meta span { color: #5b6472; }
+.file-drop__note { font-size: 12.1px; }
+
+.file-drop__actions { display: flex; flex: 0 0 auto; gap: 8.8px; }
+
+.file-drop__btn {
+  min-height: 37.4px;
+  padding: 0 13.2px;
+  border: 1px solid #d9dfe8;
+  border-radius: 8.8px;
+  background: #fff;
+  color: #253754;
+  font: 500 13.2px Poppins, sans-serif;
+  cursor: pointer;
+}
+
+.file-drop__btn:hover { background: #f1f4f8; }
+.file-drop__btn--danger { color: #b3261e; }
+.file-drop__btn--danger:hover { background: #fdecea; }
+
+.file-drop__preview {
+  margin-top: 13.2px;
+  overflow: hidden;
+  border: 1px solid #dfe5ee;
+  border-radius: 13.2px;
+  background: #eef2f7;
+}
+
+.file-drop__preview[hidden] { display: none; }
+.file-drop__preview iframe,
+.file-drop__preview object,
+.file-drop__preview img { display: block; width: 100%; height: 462px; border: 0; }
+.file-drop__preview img { object-fit: contain; }
+
+.file-drop__error { min-height: 0; margin-top: 8.8px; color: #b3261e; font-size: 13.2px; }
+.file-drop__error:empty { display: none; }
+
+@media (max-width: 575.98px) {
+  .file-drop__selected { flex-wrap: wrap; }
+  .file-drop__actions { width: 100%; }
+  .file-drop__btn { flex: 1 1 0; min-height: 44px; }
+  .file-drop__preview iframe,
+  .file-drop__preview object { height: 352px; }
+}
+
+/* Wizard footer: both buttons share one height and baseline. */
+.wizard-actions { justify-content: space-between; }
+
+.wizard-actions .register-secondary,
+.wizard-actions .profile-save,
+.wizard-actions form .profile-save {
+  display: inline-grid;
+  height: 48.4px;
+  min-height: 48.4px;
+  margin: 0;
+  padding: 0 26.4px;
+  place-items: center;
+  text-decoration: none;
+}
+
+/* The generic ".profile-form input" rule (full width, 39.6px tall) must not stretch checkboxes/radios. */
+.profile-form input[type="checkbox"],
+.profile-form input[type="radio"] {
+  flex: 0 0 auto;
+  width: 17.6px;
+  height: 17.6px;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  accent-color: #2d6da8;
+}
+
+.wizard-primary { cursor: pointer; }
+.register-consent { display: flex; align-items: flex-start; gap: 11px; font-size: 13.2px; line-height: 1.45; }
+.register-consent input { margin-top: 2.2px; }
+
+@media (min-width: 768px) {
+  .wizard-author .profile-field-grid { grid-template-columns: 1.2fr 1fr 1.2fr; }
+}
+
+.role-staff { margin: 19.8px 0; padding: 15.4px; border: 1px dashed #d5dce6; border-radius: 11px; background: #f8fafc; font-size: 13.2px; }
+.role-staff strong { display: block; margin-bottom: 8.8px; }
+.role-staff .status-badge { margin-right: 6.6px; }
+.role-staff__none { color: #5b6472; }
+.role-staff .profile-hint { margin: 11px 0 0; }
+
+/* ---------- Scale 1.1: Bootstrap rem spacing and container widths follow the 110% sizes ---------- */
+html { font-size: 110%; }
+
+/* Container widths: Bootstrap's own sizes up to xl (the 1.1 font scale must not widen the layout),
+   and a calm 1280px on large screens so there is always air on both sides. */
+@media (min-width: 576px) { .container, .container-sm { max-width: 540px; } }
+@media (min-width: 768px) { .container, .container-sm, .container-md { max-width: 720px; } }
+@media (min-width: 992px) { .container, .container-sm, .container-md, .container-lg { max-width: 960px; } }
+@media (min-width: 1200px) { .container, .container-sm, .container-md, .container-lg, .container-xl { max-width: 1140px; } }
+@media (min-width: 1400px) { .container, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl { max-width: 1280px; } }
+
+/* Scale 1.1 follow-ups: let flex children shrink instead of forcing horizontal overflow. */
+.profile-main { min-width: 0; }
+
+@media (max-width: 575.98px) {
+  .wizard-steps { overflow: hidden; }
+  .wizard-steps .is-current { min-width: 0; }
+  .wizard-steps .is-current > * {
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+/* ---------- Single-page wizard (steps switched with JS) ---------- */
+.wizard-step-btn {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 8.8px;
+  padding: 8.8px 11px;
+  border: 0;
+  border-radius: 6.6px;
+  background: #f1f3f6;
+  color: #5b6472;
+  font: 500 12.1px Poppins, sans-serif;
+  text-align: left;
+  cursor: pointer;
+}
+
+.wizard-step-btn:disabled { cursor: default; opacity: .7; }
+.wizard-steps .is-current > .wizard-step-btn { background: #253754; color: #fff; }
+.wizard-steps .is-done > .wizard-step-btn { color: #253754; }
+
+.wizard-step[hidden] { display: none; }
+
+.wizard-drafts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 0 0 17px;
+  padding: 11px 14px;
+  border-radius: 8px;
+  background: #f4f7fb;
+  font-size: 12.1px;
+}
+
+.wizard-draft-btn {
+  margin-left: auto;
+  height: 48px;
+  padding: 0 22px;
+  border: 1px solid #cfd8e3;
+  border-radius: 10px;
+  background: #fff;
+  color: #253754;
+  font: 600 13.2px Poppins, sans-serif;
+  cursor: pointer;
+}
+
+.wizard-draft-btn:hover { background: #f1f4f8; }
+.wizard-counter { margin-left: 6px; color: #5b6472; font-weight: 400; }
+
+/* ======================================================================
+   Form typography and rhythm (one scale: 12.1 hints / 13.2 labels / 14.3 fields)
+   ====================================================================== */
+.profile-form label,
+.profile-role-options legend,
+.profile-role-options label,
+.register-consent,
+.wizard-primary { font-size: 13.2px; line-height: 1.4; }
+
+.profile-form input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+.profile-form textarea,
+.profile-select-wrap select { font-size: 14.3px; }
+
+.profile-hint,
+.profile-privacy,
+.profile-required,
+.file-drop__hint,
+.file-drop__note { font-size: 12.1px; }
+
+.profile-panel textarea { font-size: 14.3px; line-height: 1.5; }
+
+/* Wizard steps wrap their fields in a div, so they need the same grid gap as .profile-form itself. */
+.wizard-step {
+  display: grid;
+  gap: 13.2px;
+}
+
+.wizard-step > .profile-notification-heading { margin: 0 0 4.4px; }
+.wizard-step > .profile-password-intro { margin: 0 0 6.6px; }
+.wizard-step > label { margin-top: 6.6px; }
+.wizard-step .profile-role-options { margin: 8.8px 0 0; gap: 13.2px; }
+.wizard-step .register-consent { margin-top: 4.4px; }
+.wizard-step .file-drop { margin-bottom: 0; }
+.wizard-step .profile-required { margin-top: 6.6px; }
+.wizard-step .auth-error:empty { display: none; }
+
+.wizard-author { display: grid; gap: 13.2px; margin: 0 0 15.4px; padding: 17.6px; }
+.wizard-author .profile-field-grid { gap: 15.4px; }
+.wizard-primary { display: flex; align-items: center; gap: 8.8px; margin: 0; }
+
+#author-rows { display: grid; gap: 0; }
+.wizard-actions { margin-top: 24.2px; }
+
+/* Same rhythm for the other profile forms that nest fields in plain divs. */
+.profile-form > .profile-journal-link { margin: 6.6px 0 4.4px; }
+.profile-form > .role-staff { margin: 8.8px 0 4.4px; }
+
+/* Phones: 16px fields stop iOS from zooming in when a field is focused. */
+@media (max-width: 767.98px) {
+  .profile-form input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+  .profile-form textarea,
+  .profile-select-wrap select,
+  .auth-form input,
+  .auth-form select,
+  .search-filter-form input { font-size: 16px; }
+}
+
+/* ======================================================================
+   Loading state for submit buttons (set by main.js on form submit)
+   ====================================================================== */
+@keyframes btn-spin { to { transform: rotate(360deg); } }
+
+button.is-loading,
+.is-loading[type="submit"] {
+  position: relative;
+  padding-right: 44px;
+  cursor: progress;
+  pointer-events: none;
+  opacity: .9;
+}
+
+button.is-loading::after,
+.is-loading[type="submit"]::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  width: 17px;
+  height: 17px;
+  margin-top: -8.5px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: btn-spin .7s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button.is-loading::after,
+  .is-loading[type="submit"]::after { animation-duration: 1.6s; }
+}
+
+/* Wizard footer buttons share one height (48.4px = 44px x 1.1). */
+.wizard-actions .register-secondary,
+.wizard-actions .profile-save,
+.wizard-actions .wizard-draft-btn,
+.wizard-actions form .profile-save { height: 48.4px; min-height: 48.4px; }
+
+/* ---------- Auth pages keep the full header (site title, search, language, profile) ---------- */
+/* The original design hid .topbar on the login page above 576px; the user wants it kept. */
+.login-page .topbar { display: block; }
+.login-page .site-header { border-top: 2.2px solid #252525; }
+
+/* The footer sits at the bottom whatever the header height is (replaces the old calc(100vh - header) guess). */
+body:has(> .auth-section),
+body:has(> .register-section) {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.auth-section,
+.register-section {
+  flex: 1 0 auto;
+  min-height: 0;
+}
+
+/* ---------- Header icon buttons (search, profile, menu) ---------- */
+/* The icons were 14px glyphs in a 31px button, next to a 40px language pill and 14px text. */
+.icon-btn {
+  box-sizing: border-box;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.icon-btn i {
+  display: block;
+  font-size: 20px;
+  line-height: 1;
+}
+
+@media (max-width: 575.98px) {
+  /* Phones: the site title shares the row with four controls, keep it on two lines. */
+  .icon-btn { width: 34px; height: 34px; font-size: 18px; }
+  .icon-btn i { font-size: 18px; }
+}
+
+@media (max-width: 399.98px) {
+  .site-header .title { font-size: 13.2px; }
+}

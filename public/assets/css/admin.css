@@ -1,0 +1,204 @@
+/* UNEC admin theme: brand palette on top of Filament, no Tailwind build needed. */
+:root {
+  --unec-navy: #193653;
+  --unec-navy-2: #253754;
+  --unec-blue: #2d6da8;
+  --unec-bg: #f4f6f9;
+  --unec-line: #e4e7eb;
+}
+
+body.fi-body,
+.fi-body {
+  background: var(--unec-bg);
+  font-family: 'Poppins', 'Inter', system-ui, sans-serif;
+}
+
+/* ---------- Sidebar ---------- */
+.fi-sidebar {
+  background: var(--unec-navy);
+  border-right: 0;
+}
+
+.fi-sidebar-header {
+  background: var(--unec-navy);
+  box-shadow: none;
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.fi-sidebar-header .fi-logo,
+.fi-sidebar-header a,
+.fi-sidebar-header .fi-sidebar-close-collapse-sidebar-btn {
+  color: #fff;
+}
+
+.fi-sidebar-group-label,
+.fi-sidebar-group-button span {
+  color: #8fa7c2;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.fi-sidebar-group-collapse-button svg { color: #8fa7c2; }
+
+.fi-sidebar-item-button {
+  color: #d5e0ec;
+  border-radius: 10px;
+}
+
+.fi-sidebar-item-button svg { color: #8fa7c2; }
+
+.fi-sidebar-item-button:hover {
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+}
+
+.fi-sidebar-item-active .fi-sidebar-item-button {
+  background: var(--unec-blue);
+  color: #fff;
+}
+
+.fi-sidebar-item-active .fi-sidebar-item-button svg,
+.fi-sidebar-item-active .fi-sidebar-item-label { color: #fff; }
+
+.fi-sidebar-item-active .fi-sidebar-item-button span { color: #fff; }
+
+/* ---------- Top bar ---------- */
+.fi-topbar > nav {
+  background: #fff;
+  box-shadow: 0 1px 0 var(--unec-line);
+}
+
+/* ---------- Content ---------- */
+.fi-header-heading {
+  color: var(--unec-navy);
+  font-weight: 700;
+}
+
+.fi-breadcrumbs a { color: var(--unec-blue); }
+
+.fi-section,
+.fi-ta-ctn,
+.fi-wi-stats-overview-stat,
+.fi-fo-wizard,
+.fi-in-section {
+  border-radius: 14px;
+  border: 1px solid var(--unec-line);
+  box-shadow: 0 1px 2px rgba(25, 54, 83, .04);
+  background: #fff;
+  --tw-ring-color: transparent;
+}
+
+.fi-section-header-heading,
+.fi-wi-stats-overview-stat-value { color: var(--unec-navy); }
+
+.fi-ta-header-cell {
+  background: #f8f9fb;
+  color: #5b6472;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.fi-ta-row:hover { background: #f8fafc; }
+
+.fi-btn { border-radius: 10px; font-weight: 600; }
+
+.fi-input-wrp,
+.fi-fo-select .fi-input-wrp { border-radius: 10px; }
+
+.fi-badge { border-radius: 8px; font-weight: 600; }
+
+.fi-modal-window { border-radius: 16px; }
+
+/* ---------- Login page ---------- */
+.fi-simple-layout {
+  background: linear-gradient(160deg, var(--unec-navy) 0%, var(--unec-navy-2) 55%, #2d6da8 130%);
+}
+
+.fi-simple-main {
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .25);
+  background: #fff;
+}
+
+.fi-simple-header-heading { color: var(--unec-navy); font-weight: 700; }
+
+.fi-simple-header .fi-logo { color: var(--unec-navy); font-size: 1.1rem; }
+
+/* Sidebar labels live in a nested span; colour them explicitly (readable on navy). */
+.fi-sidebar-item-label,
+.fi-sidebar-item-button > span,
+.fi-sidebar-group-button .fi-sidebar-group-label { color: #d5e0ec; }
+
+.fi-sidebar-item-button:hover .fi-sidebar-item-label,
+.fi-sidebar-item-button:hover > span { color: #fff; }
+
+.fi-sidebar-item-active .fi-sidebar-item-label,
+.fi-sidebar-item-active .fi-sidebar-item-button > span { color: #fff; font-weight: 600; }
+
+.fi-sidebar-group-label { color: #8fa7c2; }
+
+/* ---------- Compact density ---------- */
+.fi-body { font-size: 13px; }
+
+.fi-sidebar-header .fi-logo { font-size: 1rem; }
+
+.fi-sidebar-nav { padding: .75rem .75rem 1.5rem; row-gap: .75rem; }
+.fi-sidebar-group { gap: .15rem; }
+.fi-sidebar-group-label { font-size: 10px; }
+
+.fi-sidebar-item-button { padding: .4rem .6rem; gap: .6rem; }
+.fi-sidebar-item-button svg { width: 1.1rem; height: 1.1rem; }
+.fi-sidebar-item-label,
+.fi-sidebar-item-button > span { font-size: 13px; }
+
+
+.fi-header-heading { font-size: 1.4rem; }
+.fi-page { row-gap: 1.25rem; }
+.fi-main { padding-top: .5rem; }
+
+.fi-wi-stats-overview-stat { padding: 1rem 1.1rem; }
+.fi-wi-stats-overview-stat-value { font-size: 1.5rem; }
+.fi-wi-stats-overview-stat-label,
+.fi-wi-stats-overview-stat-description { font-size: 12px; }
+
+.fi-ta-cell { padding-top: .5rem; padding-bottom: .5rem; }
+.fi-ta-header-cell { padding-top: .6rem; padding-bottom: .6rem; }
+.fi-btn { padding: .4rem .85rem; font-size: 13px; }
+
+/* ---------- Scrollbars ---------- */
+/* Sidebar still scrolls with the wheel/touch; the native bar with arrows broke the design. */
+.fi-sidebar-nav { scrollbar-width: none; -ms-overflow-style: none; }
+.fi-sidebar-nav::-webkit-scrollbar { display: none; }
+
+/* Page scrollbar: slim, no arrow buttons. */
+html::-webkit-scrollbar { width: 8px; height: 8px; }
+html::-webkit-scrollbar-track { background: transparent; }
+html::-webkit-scrollbar-thumb { background: #c3cad4; border-radius: 8px; }
+html::-webkit-scrollbar-thumb:hover { background: #a9b2bf; }
+html::-webkit-scrollbar-button { display: none; }
+
+/* ---------- Sidebar badges (e.g. new submissions count) ---------- */
+.fi-sidebar-item-button .fi-badge,
+.fi-sidebar-item-button .fi-badge span {
+  color: #fff;
+}
+
+.fi-sidebar-item-button .fi-badge {
+  min-width: 1.35rem;
+  justify-content: center;
+  background: #d93025;
+  font-size: 11px;
+  --tw-ring-color: transparent;
+}
+
+/* On the blue active item a white pill with dark text reads best. */
+.fi-sidebar-item-active .fi-sidebar-item-button .fi-badge { background: #fff; }
+
+.fi-sidebar-item-active .fi-sidebar-item-button .fi-badge,
+.fi-sidebar-item-active .fi-sidebar-item-button .fi-badge span {
+  color: #193653;
+  font-weight: 700;
+}

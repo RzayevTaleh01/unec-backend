@@ -1,0 +1,98 @@
+{
+ "about": [
+  {
+   "slug": "purpose",
+   "title": "Məqsəd",
+   "body": "<p>UNEC Tələbə Tədqiqatları Jurnalı Azərbaycan Dövlət İqtisad Universitetinin (UNEC) Tələbə Elmi Cəmiyyəti (TEC) tərəfindən nəşr olunan, tələbələr üçün nəzərdə tutulmuş akademik jurnaldır. Jurnal tələbələrin elmi tədqiqatlarının nəticələrini dərc etmək və yaymaq üçün elmi platforma yaratmaq məqsədilə təsis edilmişdir. Bu jurnal UNEC-də tələbələr tərəfindən hazırlanması, redaksiya heyətinin əsasən tələbələrdən ibarət olması və UNEC-də nəşr olunması ilə universitetdə ilk tələbə elmi jurnalıdır. Jurnal 2023-cü ilin dekabr ayından fəaliyyət göstərir.</p> <p>Jurnalın məqsədi bakalavriatura və magistratura səviyyəsində təhsil alan tələbələrinin elmi potensialını üzə çıxarmaq, onların elmi tədqiqatlarını dəstəkləmək və nəticələrinin dərcinə şərait yaratmaqdır. Jurnal elmi biliklərin yayılmasına və paylaşılmasında platforma rolunu oynayır və tələbələrin akademik fəaliyyətini stimullaşdırmaqla elmi yaradıcılığın inkişafına töhfə verməyi hədəfləyir.</p> <p>UNEC Tələbə Tədqiqatları Jurnalı iqtisadiyyat, idarəetmə, texnoloji elmlər və əlaqəli sahələrdə orijinal nəzəri və empirik tədqiqatları qəbul edir. Nəşr olunması üçün jurnala təqdim edilən bütün məqalələr özündə elmi yenilikləri ehtiva etməsi, metodoloji baza, akademik etika və praktik əhəmiyyət meyarları əsasında qiymətləndirilir.</p>",
+   "sort": 1
+  },
+  {
+   "slug": "scope",
+   "title": "Əhatə etdiyi sahələr",
+   "body": "<p>Jurnal aşağıdakı sahələr üzrə tədqiqat işlərini qəbul edir:</p> <ul> <li>İqtisadiyyat (makroiqtisadiyyat və mikroiqtisadiyyat)</li> <li>Regional, milli və qlobal iqtisadi inkişaf</li> <li>Davamlı inkişaf, ekologiya və ətraf mühitin iqtisadiyyatı</li> <li>İqtisadi siyasət, dövlət tənzimlənməsi və fiskal idarəetmə</li> <li>Vergi və vergiqoyma sistemi</li> <li>Biznes və sahibkarlığın idarə edilməsi</li> <li>Strateji menecment və korporativ idarəetmə</li> <li>Maliyyə və maliyyə bazarları</li> <li>Mühasibat uçotu və audit</li> <li>Bank işi və sığorta</li> <li>Statistika, ekonometrika və kəmiyyət təhlili metodları</li> <li>Beynəlxalq ticarət və logistika</li> <li>Beynəlxalq iqtisadi münasibətlər</li> <li>Rəqəmsal iqtisadiyyat, informasiya texnologiyaları və data analitikası</li> <li>Texnoloji elmlər, mühəndislik və onların iqtisadi tətbiqləri</li> <li>Sosial iş, sosial siyasət və sosial rifah</li> <li>Dizayn (texniki estetika, qrafik dizayn, geyim dizaynı, vizual dizayn və media)</li> </ul>",
+   "sort": 2
+  },
+  {
+   "slug": "languages",
+   "title": "Dillər",
+   "body": "<p>Jurnal məqalələri Azərbaycan, Türk, İngilis və Rus dillərində qəbul edir.</p>",
+   "sort": 3
+  },
+  {
+   "slug": "frequency",
+   "title": "Nəşr tezliyi",
+   "body": "<p>Jurnal ildə iki dəfə nəşr olunur.</p>",
+   "sort": 4
+  },
+  {
+   "slug": "privacy-notice",
+   "title": "Məxfilik bildirişi",
+   "body": "<p>Bu jurnal saytındakı adlar və email adresləri bu jurnalın qeyd olunan məqsədləri üçün istifadə ediləcəkdir. Başqa məqsədlər və ya başqa bölümlər üçün istifadə edilməyəcəkdir.</p>",
+   "sort": 5
+  }
+ ],
+ "submission": [
+  {
+   "slug": "author-guide",
+   "title": "Müəllif bələdçisi",
+   "body": "<p>Müəlliflər bu jurnala məqalələrini təqdim etməyə dəvət olunurlar. Təqdim edilən bütün materiallar əvvəlcə Redaktor tərəfindən jurnalın məqsəd və əhatə dairəsinə uyğun olub-olmamasını müəyyən etmək üçün qiymətləndiriləcəkdir. Uyğun hesab edilən məqalələr qəbul və ya rədd qərarı verilməzdən əvvəl rəyçilərə (peer review) göndəriləcəkdir.</p> <p>Təqdimatdan əvvəl müəlliflər məqaləyə daxil edilən bütün materialların (məsələn, fotoşəkillər, sənədlər və ya məlumat bazaları) dərcinə icazə almağa görə məsuliyyət daşıyırlar. Müəllif kimi göstərilən bütün şəxslər bu şəkildə qeyd olunmağa razılıq verməlidirlər. Zəruri hallarda, tədqiqat aparıldığı ölkənin qanunvericiliyinə uyğun olaraq müvafiq etik komitə tərəfindən təsdiqlənməlidir.</p> <p>Əgər təqdimat minimum keyfiyyət standartlarına cavab verməzsə, Redaktor onu rədd edə bilər. Təqdim etməzdən əvvəl araşdırmanın dizaynının və əsaslandırmasının düzgün qurulduğuna və aydın şəkildə ifadə edildiyinə əmin olun. Başlıq qısa və konkret olmalı, xülasə (abstract) isə tam müstəqil və dolğun olmalıdır. Bu, rəyçilərin məqaləni qiymətləndirməyə razılıq vermə ehtimalını artırır. Təqdimatınızın bu tələblərə cavab verdiyinə əmin olduqdan sonra, zəhmət olmasa, onu aşağıda təqdim olunan yoxlama siyahısına uyğun şəkildə hazırlayın.</p>",
+   "sort": 1
+  },
+  {
+   "slug": "checklist",
+   "title": "Müraciət nəzarət siyahısı",
+   "body": "<p>Bütün göndərişlər aşağıdakı tələblərə cavab verməlidir:</p> <ul> <li>Bu göndəriş müəllif qaydalarında göstərilən tələblərə uyğundur.</li> <li>Təqdim olunan yazı daha əvvəl nəşr edilməyib və nəşr üçün başqa bir jurnala təqdim edilməyib (ətraflı məlumat üçün müəllif qaydalarına baxın).</li> <li>Mövcud olduqda, istinadlar üçün URL ünvanları təqdim edilib.</li> <li>Fayl OpenOffice, Microsoft Word, RTF və ya WordPerfect sənəd formatındadır.</li> <li>Bu göndərişdə yer alan bütün fotoşəkillərin, məlumat dəstlərinin və digər materialların dərc olunması üçün icazə alınıb.</li> </ul>",
+   "sort": 2
+  },
+  {
+   "slug": "articles",
+   "title": "Məqalələr",
+   "body": "<p>Bölmə qaydaları</p> <p>Məqalələr bölməsi üçün <a href=\"#\">Məqalə Göndər</a></p>",
+   "sort": 3
+  },
+  {
+   "slug": "how-to-submit",
+   "title": "Məqalələrin təqdim edilməsi",
+   "body": "<p>Jurnala UNEC-də bakalavriatura və magistratura pillələrində təhsil alan tələbələrin tərəfindən aparılmış tədqiqat nəticələri qəbul olunur.</p> <p>Məqalələr jurnalın rəsmi elektron poçt ünvanına ( <a href=\"mailto:ssjournal@unec.edu.az\">ssjournal@unec.edu.az </a>) göndərilə, və ya jurnalın vebsaytı vasitəsilə təqdim oluna bilər. Göndərilən məqalələr akademik etikaya uyğun olmalı və müəlliflik hüquqları qorunmalıdır.</p>",
+   "sort": 4
+  },
+  {
+   "slug": "ethics",
+   "title": "Etik tələblər",
+   "body": "<p>Bütün məqalələr plagiat yoxlamasından keçirilməlidir. Tədqiqat işləri akademik dürüstlük və elmi etikaya uyğun hazırlanmalıdır. Müəlliflik hüquqlarının pozulması, plagiat və etik standartların pozulması halları qəbul edilmir. Jurnal müəlliflərdən tədqiqat işlərinin orijinallığını təmin etməyi, mənbələrə düzgün istinad verməyi və məsuliyyətli elmi davranışı gözləyi</p>",
+   "sort": 5
+  },
+  {
+   "slug": "copyright",
+   "title": "Müəllif hüquqları tənzimlənməsi",
+   "body": "<p>Təqdimatınızı tamamlamazdan əvvəl daxil etdiyiniz məlumatları nəzərdən keçirin. Hər bölmənin yuxarısında yerləşən “Redaktə et” düyməsini klikləməklə istənilən məlumatda dəyişiklik edə bilərsiniz.</p> <p>Təqdimatınızı tamamladıqdan sonra redaksiya heyətimizin üzvlərindən biri onu nəzərdən keçirmək üçün təyin olunacaq. Zəhmət olmasa, burada təqdim etdiyiniz məlumatların mümkün qədər dəqiq olmasına diqqət yetirin.</p>",
+   "sort": 6
+  },
+  {
+   "slug": "privacy-statement",
+   "title": "Məxfilik Bəyannaməsi",
+   "body": "<p>Bu jurnal saytındakı adlar və email adresləri bu jurnalın qeyd olunan məqsədləri üçün istifadə ediləcəkdir. Başqa məqsədlər və ya başqa bölümlər üçün istifadə edilməyəcəkdir.</p>",
+   "sort": 7
+  }
+ ],
+ "information": [
+  {
+   "slug": "readers",
+   "title": "Oxucular üçün",
+   "body": "<p>Oxucuların nəşr bildirişi xidmətində qeydiyyatdan keçmələri tövsiyə edilir. Jurnal əsas səhifəsinin üst hissəsində yer alan Qeydiyyat linki vasitəsilə bu əməliyyat həyata keçirilə bilər. Bu qeydiyyatla hər yeni nömrə nəşr/dərc edildiyində Mündəricat səhifəsi email vasitəsilə oxucuya çatdırılır. Jurnalın təhlükəsizlik qaydalarına baxın Müəlliflərin kimlik/identifikasiya məlumatları və email adresləri heç bir şəkildə başqa məqsədlər üçün istifadə edilməyəcəkdir.</p>",
+   "sort": 1
+  },
+  {
+   "slug": "authors",
+   "title": "Müəlliflər üçün",
+   "body": "<p>Jurnalımıza məqalə göndərməyi düşünürsünüzsə <a href=\"\">Jurnal Haqqında</a> linki vasitəsilə Jurnal nəşr politikası və <a href=\"\">Müəllif Bələdçisi</a> 'ni əldə edə bilərsiniz. Müəlliflər jurnala məqalə göndərməzdən etmədən əvvəl <a href=\"\">register</a> üzv olmalıdırlar. Məqalə prosesi <a href=\"\">Üzv girişi</a> linki vasitəsilə 5 addımda həyata keçirilir.</p>",
+   "sort": 2
+  },
+  {
+   "slug": "librarians",
+   "title": "Kitabxanaçılar üçün",
+   "body": "<p>Kitabxanalara bu açıq girişli jurnalı elektron jurnallar arasına almaları tövsiyə edilir. Açıq Jurnal Sistemləri ilə bağlı ətraflı məlumat <a href=\"\">Public Knowledge Project</a> linkindən əldə edilə bilər.</p>",
+   "sort": 3
+  }
+ ]
+}
