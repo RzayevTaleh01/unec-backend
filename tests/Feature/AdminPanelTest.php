@@ -37,6 +37,11 @@ class AdminPanelTest extends TestCase
         $this->actingAs($this->admin);
     }
 
+    public function test_admin_panel_links_back_to_the_site(): void
+    {
+        $this->get('/admin')->assertOk()->assertSee('Sayta qay', false)->assertSee(route('home'), false);
+    }
+
     public function test_every_admin_screen_renders(): void
     {
         $paths = [
@@ -125,7 +130,8 @@ class AdminPanelTest extends TestCase
         $this->get('/rules/intro')->assertOk();
         // Built-in routes still win over the dynamic section route.
         $this->get('/archive')->assertOk();
-        $this->get('/admin/login')->assertRedirect('/admin');
+        // There is no separate admin login any more.
+        $this->get('/admin/login')->assertNotFound();
     }
 
     public function test_article_needs_at_least_one_author(): void
@@ -166,5 +172,44 @@ class AdminPanelTest extends TestCase
         // English has no override: it falls back to the Azerbaijani value rather than showing nothing.
         $this->get('/lang/en');
         $this->get('/')->assertSee('Mənim başlığım');
+    }
+
+    public function test_there_is_a_single_login_and_guests_are_sent_to_it(): void
+    {
+        auth()->logout();
+        $this->app['auth']->forgetGuards();
+
+        // The panel has no login page of its own.
+        $this->get('/admin/login')->assertNotFound();
+        $this->get('/admin')->assertRedirect(route('login'));
+        $this->get('/admin/articles')->assertRedirect(route('login'));
+        $this->post('/admin/logout')->assertRedirect(route('login'));
+    }
+
+    public function test_after_the_public_login_an_admin_returns_to_the_panel_they_asked_for(): void
+    {
+        auth()->logout();
+        $this->app['auth']->forgetGuards();
+        $admin = User::factory()->create(['username' => 'boss', 'password' => 'Secret123']);
+        $admin->forceFill(['is_admin' => true])->save();
+
+        $this->get('/admin/articles')->assertRedirect(route('login'));
+        $this->post('/login', ['login' => 'boss', 'password' => 'Secret123'])->assertRedirect(url('/admin/articles'));
+
+        $this->get('/admin/articles')->assertOk();
+    }
+
+    public function test_signing_out_of_the_panel_ends_the_session_and_lands_on_the_public_site(): void
+    {
+        $this->post('/admin/logout')->assertRedirect(route('home'));
+        $this->assertGuest();
+    }
+
+    public function test_the_profile_menu_links_admins_to_the_panel_but_not_other_users(): void
+    {
+        $this->get('/profile/identity')->assertOk()->assertSee(url('/admin'), false);
+
+        $plain = User::factory()->create(['username' => 'plain']);
+        $this->actingAs($plain)->get('/profile/identity')->assertOk()->assertDontSee(url('/admin'), false);
     }
 }

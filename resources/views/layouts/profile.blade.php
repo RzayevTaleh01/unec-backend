@@ -14,6 +14,9 @@
 
 <body class="profile-page">
     <header class="profile-header">
+        <button class="profile-menu-open" type="button" aria-label="{{ __('site.profile_page.menu') }}" data-profile-menu-open>
+            <i class="bi bi-list"></i>
+        </button>
         <div class="profile-header-actions">
             @php($unread = auth()->user()->unreadNotifications()->count())
             <a class="profile-bell" href="{{ route('profile.inbox') }}" aria-label="{{ __('site.inbox.title') }}">
@@ -25,6 +28,7 @@
         </div>
     </header>
 
+    <div class="profile-backdrop" data-profile-backdrop></div>
     <div class="profile-layout">
         <aside class="profile-sidebar" data-profile-sidebar>
             <div class="profile-sidebar-brand">

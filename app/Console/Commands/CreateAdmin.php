@@ -45,7 +45,7 @@ class CreateAdmin extends Command
         $user->email_verified_at ??= now();
         $user->save();
 
-        $this->info("{$user->email} is now an administrator. Sign in at ".url('/admin'));
+        $this->info("{$user->email} is now an administrator. Sign in at ".route('login').' (then open the admin panel from the profile menu or '.url('/admin').')');
 
         return self::SUCCESS;
     }

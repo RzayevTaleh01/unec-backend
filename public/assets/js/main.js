@@ -82,6 +82,17 @@ document.addEventListener("DOMContentLoaded", () => {
     profileMenuToggle.addEventListener("click", () => {
       setProfileSidebarState(!profileSidebar.classList.contains("is-open"));
     });
+    document
+      .querySelector("[data-profile-menu-open]")
+      ?.addEventListener("click", () => setProfileSidebarState(true));
+    document
+      .querySelector("[data-profile-backdrop]")
+      ?.addEventListener("click", () => setProfileSidebarState(false));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && window.matchMedia("(max-width: 767.98px)").matches) {
+        setProfileSidebarState(false);
+      }
+    });
   }
 
   // =========================

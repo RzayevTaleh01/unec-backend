@@ -8,8 +8,8 @@
         <a class="back-link" href="{{ route('profile.reviews') }}"><i class="bi bi-arrow-left"></i> {{ __('site.back') }}</a>
 
         <h2 class="profile-notification-heading">{{ $article->title }}</h2>
-        <p><span class="status-badge status-{{ $review->status }}">{{ __('site.reviews.statuses.'.$review->status) }}</span>
-            @if ($review->due_at) · {{ __('site.reviews.due') }} {{ $review->due_at->format('d.m.Y') }} @endif</p>
+        <div class="detail-meta"><span class="status-badge status-{{ $review->status }}">{{ __('site.reviews.statuses.'.$review->status) }}</span>
+            @if ($review->due_at) <span>{{ __('site.reviews.due') }} {{ $review->due_at->format('d.m.Y') }}</span> @endif</div>
         <p class="profile-hint">{{ __('site.reviews.blind_notice') }}</p>
 
         {{-- Authors are deliberately not shown: reviews are blind. --}}
@@ -33,7 +33,7 @@
             @error('answer')<div class="auth-error">{{ $message }}</div>@enderror
             <form class="wizard-actions" method="post" action="{{ route('profile.reviews.respond', $review) }}">
                 @csrf
-                <button class="register-secondary" name="answer" value="decline" type="submit">{{ __('site.reviews.decline') }}</button>
+                <button class="btn-compact" name="answer" value="decline" type="submit">{{ __('site.reviews.decline') }}</button>
                 <button class="profile-save" name="answer" value="accept" type="submit">{{ __('site.reviews.accept') }}</button>
             </form>
         @elseif ($review->status === 'accepted')
@@ -68,8 +68,10 @@
             @endif
         @elseif ($review->status === 'completed')
             <h3 class="profile-notification-heading">{{ __('site.reviews.your_review') }}</h3>
-            <p><strong>{{ __('site.recommendations.'.$review->recommendation) }}</strong></p>
-            <p>{!! nl2br(e($review->comments_to_author)) !!}</p>
+            <div class="note-card">
+                <span class="note-card-title">{{ __('site.recommendations.'.$review->recommendation) }}</span>
+                <p>{!! nl2br(e($review->comments_to_author)) !!}</p>
+            </div>
         @endif
     </section>
 @endsection
